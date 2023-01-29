@@ -1,7 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for
 from .pok_API import get_pokemon
-from .forms import UserCreationForm, PoknameForm, LoginForm
+from .forms import UserCreationForm, PoknameForm, LoginForm, ProfileForm
 from .models import User
 from flask_login import login_user, current_user, logout_user
 
@@ -42,19 +42,20 @@ def signUpPage():
         if form.validate():
             first_name = form.first_name.data
             last_name = form.last_name.data
+            user_name = " "
             email = form.email.data
             password = form.password.data
             
             print(first_name, email, password)
 
             # add user to database
-            user = User(first_name, last_name, email, password)
+            user = User(first_name, last_name, user_name, email, password)
             print(user)
 
             user.saveToDB()
 
-            return render_template('signup.html', form = form )
-            # return redirect(url_for('login'))
+            # return render_template('signup.html', form = form )
+            return redirect(url_for('loginPage'))
 
 
     return render_template('signup.html', form = form )
@@ -85,9 +86,15 @@ def loginPage():
     return render_template('login.html', form = form, error = error)
 
 @app.route('/logout', methods=["GET"])
-def logoutPage():
+def logoutRoute():
     logout_user()
     return redirect("/", code=302)
+
+@app.route('/profile', methods=["GET"])
+def profile_page():
+    logout_user
+            
+    return redirect(url_for('loginPage'))
 
 
     

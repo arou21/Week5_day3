@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import DataRequired, EqualTo
 
 class UserCreationForm(FlaskForm):
@@ -19,3 +19,10 @@ class PoknameForm(FlaskForm):
     pokname = StringField("first_name", validators = [DataRequired()])
     pokname = StringField("last_name", validators = [DataRequired()])
     submit = SubmitField()
+
+class ProfileForm(FlaskForm):
+    first_name = StringField("first_name", validators = [DataRequired()])
+    last_name = StringField("last_name", validators = [DataRequired()])
+    gender = StringField("gender", validators = [DataRequired()])
+    age = IntegerField("age", validators = [DataRequired()])
+    submit = SubmitField(label="Update")
