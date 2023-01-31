@@ -16,7 +16,7 @@
           </li>
 
           
-            {% if user %}
+            {% if current_user.is_active %}
             <li class="nav-item">
             <a class="nav-link" href="/profile">profile</a></li>
             <li class="nav-item">
@@ -29,8 +29,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/searchPage">search</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/catch">catch</a>
+          </li>
           <li class = "nav-item">
-            <a class="nav-link" href="#">{{ current_user.username }}</a></li>
+            <a class="nav-link" href="#">{{ current_user.user_name }}</a></li>
         </ul>
       </div>
     </div>

@@ -52,14 +52,18 @@ class Pokemon_table(db.Model):
 
 class caught_pokemon(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    pokemon_type = db.Column(db.Integer, nullable=False, unique=True)
-    user_id = db.Column(db.Integer, nullable=False, unique=True)
-    shiny = db.Column(db.Boolean, nullable=False, unique=True)
+    pokemon_type = db.Column(db.String(45), nullable=False, unique=False)
+    user_id = db.Column(db.Integer, nullable=False, unique=False)
+    shiny = db.Column(db.Boolean, nullable=False, unique=False)
 
     def __init__(self, pokemon_type, user_id, shiny):
         self.pokemon_type = pokemon_type
         self.user_id = user_id
         self.shiny = shiny
+
+    def saveToDB(self):
+        db.session.add(self)
+        db.session.commit()
     
     
 

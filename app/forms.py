@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired, EqualTo
 class UserCreationForm(FlaskForm):
     first_name = StringField("first_name", validators = [DataRequired()])
     last_name = StringField("last_name", validators = [DataRequired()])
+    user_name = StringField("user_name", validators = [DataRequired()])
     email = StringField("Email", validators = [DataRequired()])
     password = PasswordField("Password", validators = [DataRequired()])
     confirm_password = PasswordField("Confirm Password", validators = [DataRequired(), EqualTo('password')])
@@ -26,3 +27,8 @@ class ProfileForm(FlaskForm):
     gender = StringField("gender", validators = [DataRequired()])
     age = IntegerField("age", validators = [DataRequired()])
     submit = SubmitField(label="Update")
+
+class CatchForm(FlaskForm):
+    pokname = StringField("first_name", validators = [DataRequired()])
+    submit = SubmitField(label="Catch")
+
